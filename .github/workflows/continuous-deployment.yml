@@ -26,3 +26,15 @@ jobs:
           distribution: temurin
           cache: maven
 
+      - name: Build Application JAR
+        working-directory: ./
+        run: mvn clean package
+
+      - name: Docker Compose build
+        run: docker compose build
+
+      - name: Push to Docjer Hub Container Registry
+        run: |
+          docker tag ${{secrets.DOCKER_USERNAME}}/rest-erudio:latest ${{secrets.DOCKER_USERNAME}}/rest-erudio:${{github.run_id}}
+          docker push ${{secrets.DOCKER_USERNAME}}/rest-erudio:latest
+          docker push ${{secrets.DOCKER_USERNAME}}/rest-erudio:${{github.run_id}}
