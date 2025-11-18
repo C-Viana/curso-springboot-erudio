@@ -1,0 +1,128 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="Person" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ad0a6ca4-6908-4d86-b723-09dc9ee76880">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZXJ1ZGlvLnBlcnNvbiBBUyAsMTgyLDEwMyxlMmYwYzM0ZS02NDJlLTRjOTUtOWI3NS00NzY0N2I3&#xa;YWVhYzM7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Curso Erudio MySQL"/>
+	<style name="Zebra Background">
+		<conditionalStyle mode="Opaque" forecolor="#030303" backcolor="#E0E0E0">
+			<conditionExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<parameter name="PERSON_ID" class="java.lang.Long"/>
+	<parameter name="SUB_REPORT_DATA_SOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="BOOK_SUB_REPORT" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QR_CODE_IMAGE" class="java.io.InputStream"/>
+	<parameter name="SUB_REPORT_DIR" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[SELECT id,
+	CONCAT(first_name, ' ', last_name) AS name,
+	gender,
+	enabled,
+	address,
+	profile_url AS profileUrl,
+	photo_url AS photoUrl
+FROM erudio.person
+WHERE 
+	id = $P{PERSON_ID}]]></query>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+	</field>
+	<field name="gender" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="gender"/>
+		<property name="com.jaspersoft.studio.field.label" value="gender"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="enabled" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="enabled"/>
+		<property name="com.jaspersoft.studio.field.label" value="enabled"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="address"/>
+		<property name="com.jaspersoft.studio.field.label" value="address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="profileUrl" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="profile_url"/>
+		<property name="com.jaspersoft.studio.field.label" value="profileUrl"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<field name="photoUrl" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="photo_url"/>
+		<property name="com.jaspersoft.studio.field.label" value="photoUrl"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="person"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="180" splitType="Stretch">
+		<element kind="image" uuid="dc9d2fc2-b6fc-47a5-b5e6-23515c2bd242" x="20" y="10" width="100" height="40">
+			<expression><![CDATA["https://raw.githubusercontent.com/leandrocgsi/blog-images/refs/heads/main/logo_with_text.png"]]></expression>
+		</element>
+		<element kind="staticText" uuid="581299cf-9c8c-4ab0-856b-bc1b1b011b4a" x="30" y="50" width="39" height="18" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Code: ]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73cbfa4e-46af-4875-b14e-b272c7220711"/>
+		</element>
+		<element kind="textField" uuid="c8fe5844-42c5-44db-ae41-6e20c9a514df" x="70" y="50" width="40" height="18" fontSize="12.0" vTextAlign="Middle">
+			<expression><![CDATA[$F{id}]]></expression>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73cbfa4e-46af-4875-b14e-b272c7220711"/>
+		</element>
+		<element kind="staticText" uuid="43cc3bbe-383d-4986-81fc-5a3b1dd11813" x="30" y="110" width="40" height="18" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Name: ]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3fa62541-7cbb-4c80-8105-08c8aeb19b4f"/>
+		</element>
+		<element kind="textField" uuid="9484eb6e-8d13-45bd-88c3-6b333c9cfdec" x="70" y="110" width="179" height="18" fontSize="12.0" vTextAlign="Middle">
+			<expression><![CDATA[$F{name}]]></expression>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3fa62541-7cbb-4c80-8105-08c8aeb19b4f"/>
+		</element>
+		<element kind="staticText" uuid="58285194-3dd2-43b3-b46e-7aab2c38fedb" x="30" y="80" width="50" height="18" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Gender: ]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="62b75e68-8c9a-41cc-945c-e146574e7695"/>
+		</element>
+		<element kind="staticText" uuid="a6cf7911-7895-46ca-bdf5-60230b09335b" x="30" y="140" width="60" height="18" fontSize="12.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Address: ]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bde82e3-5317-417b-b26d-bbbd3d383b76"/>
+		</element>
+		<element kind="textField" uuid="7f670597-462a-40b8-a4f1-59cea082eac2" x="80" y="80" width="100" height="18" fontSize="12.0" vTextAlign="Middle">
+			<expression><![CDATA[$F{gender}]]></expression>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="62b75e68-8c9a-41cc-945c-e146574e7695"/>
+		</element>
+		<element kind="textField" uuid="a502c57a-37cd-41ae-b259-0913ed31b7f1" x="90" y="140" width="159" height="18" fontSize="12.0" vTextAlign="Middle">
+			<expression><![CDATA[$F{address}]]></expression>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bde82e3-5317-417b-b26d-bbbd3d383b76"/>
+		</element>
+		<element kind="image" uuid="7f682016-82fa-4d3b-b60f-60cdafd9c082" x="390" y="10" width="150" height="170">
+			<expression><![CDATA[$F{photoUrl}.trim()]]></expression>
+		</element>
+		<element kind="image" uuid="761cacd4-592d-4f40-b126-42cf415e69e4" x="280" y="10" width="110" height="148">
+			<expression><![CDATA[$P{QR_CODE_IMAGE}]]></expression>
+		</element>
+	</title>
+	<detail>
+		<band height="200" splitType="Stretch">
+			<element kind="frame" uuid="6aab909f-e0ba-451d-b425-7b65e5e35bd3" x="0" y="0" width="549" height="200">
+				<element kind="subreport" uuid="f0c5e9bf-28b5-42bd-a475-bf6dece2d3ea" x="0" y="0" width="460" height="200">
+					<dataSourceExpression><![CDATA[$P{SUB_REPORT_DATA_SOURCE}]]></dataSourceExpression>
+					<expression><![CDATA[$P{SUB_REPORT_DIR}]]></expression>
+				</element>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="55" splitType="Stretch">
+		<element kind="textField" uuid="2e35dbaf-3e40-4904-a223-a071c35c2344" x="420" y="12" width="70" height="30" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="38598090-d919-441c-9d3c-799ddb42d277" x="490" y="12" width="59" height="30" evaluationTime="Report" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[" of " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="04260b39-fbfb-4f82-b680-1816ceed9c83" x="20" y="12" width="100" height="30" pattern="MMMMM dd, yyyy" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[new java.text.SimpleDateFormat("dd MMMM yyyy", java.util.Locale.ENGLISH)
+.format(new java.util.Date())]]></expression>
+		</element>
+		<element kind="staticText" uuid="3a809371-ce4f-41c3-a679-f9cda1fc8065" x="120" y="12" width="300" height="30" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[© Copyright - Erudio Training - CNPJ: 34.523.711/0001-62]]></text>
+		</element>
+	</pageFooter>
+</jasperReport>

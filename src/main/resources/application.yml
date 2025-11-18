@@ -1,0 +1,58 @@
+server:
+  port: 80
+file: 
+  upload-dir: /SourceCode/SPRING BOOT/Curso_Erudio/download-repository
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expiration-time: 3600000
+email:
+  subject: "Default Subject"
+  message: "Default Message"
+spring:
+  cors:
+    allowed-origins: "http://localhost:8080,http://localhost:3000,http://www.cviana.com.br"
+  application:
+    name: training-section27-docker-compose
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/erudio?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+3
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: false
+    open-in-view: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_APP_PASSWORD}
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enabled: true
+      mail.smtp.starttls.required: true
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+logging:
+ level:
+  root: INFO
+  #net.sf.jasperreports.engine: TRACE
+  #'[br.com.erudio]': ERROR
+springdoc:
+  paths-to-match:
+   - /api/**/v1/**
+   - /auth/**
+  swagger-ui:
+   use-root-path: true

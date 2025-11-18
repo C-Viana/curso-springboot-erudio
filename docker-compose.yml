@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:9.1.0
+    environment:
+      TZ: America/Sao_Paulo
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: erudio
+    ports:
+      - "3308:3306"
+    expose:
+      - 3306
+    networks:
+      - erudio_network
+
+  rest-erudio:
+    image: cedsv/rest-erudio
+    depends_on:
+      - db
+    restart: always
+    build: .
+    environment:
+      TZ: America/Sao_Paulo
+      SPRING.DATASOURCE.DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+      SPRING.DATASOURCE.URL: jdbc:mysql://db:3306/erudio?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING.DATASOURCE.USERNAME: root
+      SPRING.DATASOURCE.PASSWORD: root
+    ports:
+      - 80:80
+    command: mvn spring-boot:run
+    networks:
+      - erudio_network
+
+networks:
+  erudio_network:
+    driver: bridge
